@@ -31,7 +31,7 @@ describe('ADF Demo App', function() {
      var password = element(by.id('password'));
      var loginButton = element(by.id('login-button'));
      var adfUserProfile = element(by.id('adf-userinfo-ecm-name-display'));
-
+     var folderSelected = element(by.css('.adf-datatable-table-cell[filename=' + folderName + '] mat-icon'));
 
      browser.get(SETTINGS_URL);
      expect(browser.getTitle()).toEqual('Welcome - Alfresco ADF Application');
@@ -85,6 +85,8 @@ describe('ADF Demo App', function() {
      expect(contentFolderRows.count()).toBe(1);
      browser.wait(EC.presenceOf(userFolder));
      expect(userFolder.isDisplayed());
+     userFolder.click();
+     expect(folderSelected.getAttribute('svgicon')).toBe('selected');
      browser.actions().mouseMove(contentActions).perform();
      contentActions.click();
      expect(contentActionsMenu.isDisplayed());
